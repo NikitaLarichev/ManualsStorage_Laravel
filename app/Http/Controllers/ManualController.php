@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Manual;
 use App\Models\UnconfirmedManual;
-use Spatie\PdfToText\Pdf;
 use Smalot\PdfParser\Parser;
 
 class ManualController extends Controller

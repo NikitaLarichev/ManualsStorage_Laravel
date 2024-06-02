@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
 use App\Models\UnconfirmedManual;
 use App\Models\Manual;
-use Spatie\PdfToText\Pdf;
 use Smalot\PdfParser\Parser;
 
 class UnconfirmedManualController extends Controller
@@ -63,13 +62,10 @@ class UnconfirmedManualController extends Controller
         $validated = $request->validate(['file'=>'file|mimetypes:application/pdf,text/plain,application/octet-stream,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'description'=>'required|max:500']);
         $file = $request->file('file');
         $ty = $file->getMimeType();
-        //return "$ty";
         $description = $request->input('description');
         $author_email = $request->input('author_email');
         $name = $file->getClientOriginalName();
         $lastDotPos = strrpos($name, '.');
-        //$extension = $file->extension();
-        //$extension = '.'.$extension;
         $extension = strrchr($name,'.');
         $onlyName = substr($name, 0, $lastDotPos);
         $newName = $onlyName."_".time().$extension;
