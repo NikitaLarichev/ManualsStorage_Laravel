@@ -43,25 +43,29 @@ class ManualController extends Controller
         if ($extension == ".pdf"){
             if(Storage::disk('unconfirmed')->exists("$filename")){
                 $path = Storage::disk('unconfirmed')->path($filename);
-            }
-            else if(Storage::disk('confirmed')->exists("$filename")){
+            } else if(Storage::disk('confirmed')->exists("$filename")){
                 $path = Storage::disk('confirmed')->path($filename);
-            }
-            else
+            } else{
                 $path = "";
+            }
             $pdfParser=new Parser();
             $pdf = $pdfParser->parseFile($path);
             $text = $pdf->getText();
-        }
-        else if ($extension == ".txt"){
+        } else if ($extension == ".txt"){
+            if(Storage::disk('unconfirmed')->exists("$filename")){
+                $text = Storage::get("unconfirmed_manuals/$filename");
+            }else if(Storage::disk('confirmed')->exists("$filename")){
+                $text = Storage::get("confirmed_manuals/$filename");
+            } else {}
+        } else if ($extension == ".doc"||$extension == ".docx"){
             if(Storage::disk('unconfirmed')->exists("$filename")){
                 $text = Storage::get("unconfirmed_manuals/$filename");
             }
             else if(Storage::disk('confirmed')->exists("$filename")){
                 $text = Storage::get("confirmed_manuals/$filename");
             }
-            else{}
-        }
+        } else {}
         return view('manualReading', ['text'=>$text]);
     }
 }
+

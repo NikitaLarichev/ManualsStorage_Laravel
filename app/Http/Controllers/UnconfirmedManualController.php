@@ -60,15 +60,19 @@ class UnconfirmedManualController extends Controller
     }
 
     public function update(Request $request){
-        $validated = $request->validate(['file'=>'file|mimes:txt,docx,pdf,doc', 'description'=>'required|max:500']);
+        $validated = $request->validate(['file'=>'file|mimetypes:application/pdf,text/plain,application/octet-stream,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'description'=>'required|max:500']);
         $file = $request->file('file');
+        $ty = $file->getMimeType();
+        //return "$ty";
         $description = $request->input('description');
         $author_email = $request->input('author_email');
         $name = $file->getClientOriginalName();
         $lastDotPos = strrpos($name, '.');
-        $extension = $file->extension();
+        //$extension = $file->extension();
+        //$extension = '.'.$extension;
+        $extension = strrchr($name,'.');
         $onlyName = substr($name, 0, $lastDotPos);
-        $newName = $onlyName."_".time().'.'.$extension;
+        $newName = $onlyName."_".time().$extension;
         $file->storeAs('unconfirmed_manuals', $newName);
         $newManual = new UnconfirmedManual();
         $newManual->manual_name = $newName;
