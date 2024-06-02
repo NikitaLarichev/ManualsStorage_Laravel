@@ -12,4 +12,6 @@ class Complaint extends Model
     protected $primaryKey='id';
     protected $table='complaints';
     protected $fillable=['claim'];
+    
+    public $timestamps = false;
 }

@@ -32,11 +32,11 @@
                     <ul class="navbar-nav me-auto">
                         @if(Auth::check())
                             @if(Auth::user()->role=="admin")
-                                <li class="nav-item"><a class="nav-link" href="user_list">Список пользователей</a></li>
-                                <li class="nav-item"><a class="nav-link" href="unconfirmed_manuals_list">Руководства для подтверждения</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('user_list')}}">Список пользователей</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('unconfirmed_manuals_list')}}">Руководства для подтверждения</a></li>
                             @endif
                             @if(Auth::user()->isBlocked==0)
-                                <li class="nav-item"><a class="nav-link" href="manual_loading">Загрузка файлов</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('manual_loading')}}">Загрузка файлов</a></li>
                             @endif
                         @endif
                     </ul>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('manual_id');
             $table->string('claim', 300);
+            $table->string('author_name', 50);
         });
     }
 
