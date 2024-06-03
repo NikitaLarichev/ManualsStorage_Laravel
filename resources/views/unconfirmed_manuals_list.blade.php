@@ -20,7 +20,7 @@
         <table class="table table-striped table-light table-align-middle table-bordered">
             <thead>
                 <tr>
-                    <th>Описание</th>
+                    <th>Описание (марка, модель)</th>
                     <th>Название файла</th>
                     <th>Емэйл автора</th>
                     <th></th>
@@ -35,7 +35,7 @@
                         <input type="textarea" name="description" value="{{$uc_manual->description}}"/>
                     </td>
                     <td>
-                        <a href="read\{{$uc_manual->manual_name}}">{{$uc_manual->manual_name}}</a>
+                        <a href="{{route('read',[$uc_manual->manual_name])}}">{{$uc_manual->manual_name}}</a>
                     </td>
                     <td>
                         <div>{{$uc_manual->author_email}}</div>

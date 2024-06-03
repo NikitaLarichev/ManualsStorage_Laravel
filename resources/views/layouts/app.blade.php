@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container text-light">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Руководства
+                    Моя бытовая техника
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -30,13 +30,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{route('manual_list')}}">Инструкции</a></li>
                         @if(Auth::check())
                             @if(Auth::user()->role=="admin")
                                 <li class="nav-item"><a class="nav-link" href="{{route('user_list')}}">Список пользователей</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{route('unconfirmed_manuals_list')}}">Руководства для подтверждения</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('unconfirmed_manuals_list')}}">Инструкции ожидающие подтверждения</a></li>
                             @endif
                             @if(Auth::user()->isBlocked==0)
-                                <li class="nav-item"><a class="nav-link" href="{{route('manual_loading')}}">Загрузка файлов</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('manual_loading')}}">Добавление инструкций</a></li>
                             @endif
                         @endif
                     </ul>

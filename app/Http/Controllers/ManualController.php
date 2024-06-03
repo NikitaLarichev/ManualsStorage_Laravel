@@ -58,37 +58,21 @@ class ManualController extends Controller
         $complaint->delete();
         return back();
      }
-    public function readManual($filename){
-        $extension = strrchr($filename, '.');
+     public function readManual($filename){
+        $manual = Manual::firstWhere("manual_name","$filename");
+        $path="";
+        if(Storage::disk('unconfirmed')->exists("$filename")){
+            $path = Storage::disk('unconfirmed')->path($filename);
+        } else if(Storage::disk('confirmed')->exists("$filename")){
+            $path = Storage::disk('confirmed')->path($filename);
+        } else{}
+        return response()->file("$path");
+
+     }
+    public function manualComplaints($filename){
         $manual = Manual::firstWhere("manual_name","$filename");
         $complaints = Complaint::where('manual_id', "$manual->id")->get();
-        $text = "";
-        if ($extension == ".pdf"){
-            if(Storage::disk('unconfirmed')->exists("$filename")){
-                $path = Storage::disk('unconfirmed')->path($filename);
-            } else if(Storage::disk('confirmed')->exists("$filename")){
-                $path = Storage::disk('confirmed')->path($filename);
-            } else{
-                $path = "";
-            }
-            $pdfParser=new Parser();
-            $pdf = $pdfParser->parseFile($path);
-            $text = $pdf->getText();
-        } else if ($extension == ".txt"){
-            if(Storage::disk('unconfirmed')->exists("$filename")){
-                $text = Storage::get("unconfirmed_manuals/$filename");
-            }else if(Storage::disk('confirmed')->exists("$filename")){
-                $text = Storage::get("confirmed_manuals/$filename");
-            } else {}
-        } else if ($extension == ".doc"||$extension == ".docx"){
-            if(Storage::disk('unconfirmed')->exists("$filename")){
-                $text = Storage::get("unconfirmed_manuals/$filename");
-            }
-            else if(Storage::disk('confirmed')->exists("$filename")){
-                $text = Storage::get("confirmed_manuals/$filename");
-            }
-        } else {}
-        return view('manualReading', ['text'=>$text, 'manual_id'=>$manual->id, 'complaints'=>$complaints]);
+        return view('manual_reading', ['manual'=>$manual, 'complaints'=>$complaints]);   
     }
 }
 

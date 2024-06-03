@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\MessageBag;
 use App\Models\UnconfirmedManual;
 use App\Models\Manual;
+use App\Models\Complaint;
 use Smalot\PdfParser\Parser;
 
 class UnconfirmedManualController extends Controller
@@ -57,11 +58,9 @@ class UnconfirmedManualController extends Controller
         $uc_manuals = UnconfirmedManual::all();
         return view('unconfirmed_manuals_list', ['uc_manuals'=> $uc_manuals]);
     }
-
     public function update(Request $request){
         $validated = $request->validate(['file'=>'file|mimetypes:application/pdf,text/plain,application/octet-stream,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'description'=>'required|max:500']);
         $file = $request->file('file');
-        $ty = $file->getMimeType();
         $description = $request->input('description');
         $author_email = $request->input('author_email');
         $name = $file->getClientOriginalName();

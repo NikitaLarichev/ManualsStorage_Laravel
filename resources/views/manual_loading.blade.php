@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-<h6 class="mb-5">Здесь вы можете загрузить руководство по экплуатации в базу данных!</h6>
+<h6 class="mb-5">Здесь вы можете загрузить инструкцию по экплуатации в базу данных!</h6>
   @if($errors->any())
     <div class="alert alert-danger">
         <ul>
