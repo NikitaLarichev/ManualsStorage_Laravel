@@ -87,6 +87,7 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('confirmed') => storage_path('app\confirmed_manuals'),
         public_path('unconfirmed') => storage_path('app/unconfirmed_manuals'),
+        base_path('public_html')=>base_path('public'),
     ],
 
 ];

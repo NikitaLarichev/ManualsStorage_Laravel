@@ -23,8 +23,8 @@
     <div class="container">
         @foreach($complaints as $complaint)
         <div class="my-3">
-            <div class="bg-light my-1">{{$complaint->author_name}}</div>
-            <div class="bg-light w-75 border h-auto my-1 rounded">{{$complaint->claim}}</div>
+            <div class="bg-light my-1"><strong>{{$complaint->author_name}}:</strong></div>
+            <div class="bg-light w-75 border h-auto my-1 rounded ms-2">{{$complaint->claim}}</div>
             @if(Auth::check())
                 @if(Auth::user()->role == "admin")
                     <form method="post" action="{{route('complaint_delete')}}">
