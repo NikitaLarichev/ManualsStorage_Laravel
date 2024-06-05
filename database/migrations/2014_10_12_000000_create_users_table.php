@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role', 10)->default("user");
-            $table->boolean('isBlocked');
+            $table->boolean('isBlocked')->default(0);
         });
     }
 
