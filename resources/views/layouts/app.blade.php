@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{asset('manuals-storage.ru/public/css/bootstrap.min.css')}}">
     <!-- Scripts -->
 
 </head>
@@ -89,5 +89,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{asset('manuals-storage.ru/public/js/bootstrap.bundle.js.map')}}"></script>
 </body>
 </html>
