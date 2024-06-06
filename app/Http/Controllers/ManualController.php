@@ -29,11 +29,11 @@ class ManualController extends Controller
                 $uc_manual = Manual::firstWhere('manual_name',"$filename");
                 $uc_manual->delete();
            }catch(Exception){
-                return redirect('/');
+                return back();
            }
            Storage::delete("confirmed_manuals/$filename");
         }
-        return redirect('/');
+        return back();
     }
     public function downloadManual($filename){
        return Storage::download("confirmed_manuals/$filename");
@@ -59,6 +59,7 @@ class ManualController extends Controller
         return back();
      }
      public function readManual($filename){
+        return "test";
         $manual = Manual::firstWhere("manual_name","$filename");
         $path="";
         if(Storage::disk('unconfirmed')->exists("$filename")){

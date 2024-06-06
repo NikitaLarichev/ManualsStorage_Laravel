@@ -38,7 +38,7 @@ return [
 
         'confirmed' => [
             'driver' => 'local',
-            'root' => storage_path('app\confirmed_manuals'),
+            'root' => storage_path('app/confirmed_manuals'),
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -85,7 +85,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('confirmed') => storage_path('app\confirmed_manuals'),
+        public_path('confirmed') => storage_path('app/confirmed_manuals'),
         public_path('unconfirmed') => storage_path('app/unconfirmed_manuals'),
         base_path('public_html')=>base_path('public'),
     ],
